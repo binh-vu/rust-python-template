@@ -1,11 +1,11 @@
 [package]
-name = "cookiecutter-rustpython"
+name = "rust-python-template"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
-name = "cookiecutter_rustpython"
+name = "rust_python_template"
 crate-type = ["cdylib"]
 
 [dependencies]
