@@ -6,7 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
 name = "rust_python_template"
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-pyo3 = { version = "0.16.3", features = ["extension-module"] }
+pyo3 = "0.16.3"
+
+[features]
+extension-module = ["pyo3/extension-module"]
+default = ["extension-module"]
