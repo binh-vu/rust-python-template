@@ -25,8 +25,6 @@ jobs:
       #         with:
       #           image: tonistiigi/binfmt:latest
       #           platforms: all
-      # - name: Run test
-      #   run: cargo test --no-default-features --features pyo3/auto-initialize
       - uses: messense/maturin-action@v1
         with:
           manylinux: auto
