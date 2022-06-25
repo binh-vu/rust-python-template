@@ -24,15 +24,15 @@ jobs:
           platforms: all
       - uses: messense/maturin-action@v1
         with:
-          manylinux: ${{ matrix.image }}
+          container: ${{ matrix.image }}
           target: ${{ matrix.target }}
           command: list-python
       - uses: messense/maturin-action@v1
         with:
-          manylinux: ${{ matrix.image }}
+          container: ${{ matrix.image }}
           target: ${{ matrix.target }}
           command: build
-          args: --release -o dist -i
+          args: --release -o dist
       - run: cat run-maturin-action.sh
       - name: Upload wheels
         uses: actions/upload-artifact@v2
