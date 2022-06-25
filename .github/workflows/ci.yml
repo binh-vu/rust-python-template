@@ -8,11 +8,13 @@ jobs:
   linux:
     strategy:
       matrix:
-        platforms:
+        platform:
           - target: aarch64-unknown-linux-gnu
             image: quay.io/pypa/manylinux2014_aarch64:latest
             arch: aarch64
     runs-on: ubuntu-latest
+    # container:
+    #   image: ${{ matrix.}}
     steps:
       - uses: actions/checkout@v3
       - name: setup qemu
@@ -25,8 +27,8 @@ jobs:
       - uses: messense/maturin-action@v1.27.0
         with:
           manylinux: auto
-          container: ${{ matrix.image }}
-          target: ${{ matrix.target }}
+          container: ${{ matrix.platform.image }}
+          target: ${{ matrix.platform.target }}
           command: build
           args: --release -o dist
       - run: cat run-maturin-action.sh
