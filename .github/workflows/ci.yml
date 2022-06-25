@@ -11,32 +11,20 @@ jobs:
         platform:
           - target: aarch64-unknown-linux-gnu
             image: quay.io/pypa/manylinux2014_aarch64:latest
+            platform: linux/arm64
             arch: aarch64
     runs-on: ubuntu-latest
-    # container:
-    #   image: ${{ matrix.}}
+    container:
+      image: ${{ matrix.platform.image }}
+      options: --platform $matrix.platform.platform
     steps:
       - uses: actions/checkout@v3
-      - name: setup qemu
-        id: qemu
-        uses: docker/setup-qemu-action@v1
-        if: matrix.aarch64 != 'x86_64' && matrix.aarch64 != 'i686'
+      - uses: actions-rs/toolchain@v1
         with:
-          image: tonistiigi/binfmt:latest
-          platforms: all
-      - uses: messense/maturin-action@v1.27.0
-        with:
-          manylinux: auto
-          container: ${{ matrix.platform.image }}
-          target: ${{ matrix.platform.target }}
-          command: build
-          args: --release -o dist
-      - run: cat run-maturin-action.sh
-      - name: Upload wheels
-        uses: actions/upload-artifact@v2
-        with:
-          name: wheels
-          path: dist
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: which cargo
 
   # windows:
   #   runs-on: windows-latest
