@@ -29,6 +29,11 @@ jobs:
         with:
           manylinux: auto
           target: ${{ matrix.target }}
+          command: list-python
+      - uses: messense/maturin-action@v1
+        with:
+          manylinux: auto
+          target: ${{ matrix.target }}
           command: build
           args: --release -o dist -i /opt/python/cp37-cp37m/bin/python
       - run: cat run-maturin-action.sh
