@@ -24,11 +24,13 @@ jobs:
           platforms: all
       - uses: messense/maturin-action@v1
         with:
+          manylinux: auto
           container: ${{ matrix.image }}
           target: ${{ matrix.target }}
           command: list-python
       - uses: messense/maturin-action@v1
         with:
+          manylinux: auto
           container: ${{ matrix.image }}
           target: ${{ matrix.target }}
           command: build
