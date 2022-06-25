@@ -30,7 +30,7 @@ jobs:
           manylinux: auto
           target: ${{ matrix.target }}
           command: build
-          args: --release -o dist
+          args: --release -o dist -i /opt/python/cp37-cp37m/bin/python
       - run: cat run-maturin-action.sh
       - name: Upload wheels
         uses: actions/upload-artifact@v2
